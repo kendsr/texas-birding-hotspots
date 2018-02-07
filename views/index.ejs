@@ -1,0 +1,18 @@
+<% include partials/header %>
+
+    <h2>Select a County to see hot spots on map</h2>
+    <div class="dropdown text-center">
+        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Counties
+        <span class="caret"></span></button>
+        <ul id="scrollme" class="dropdown-menu dropdown-menu-center" role="menu" aria-labelledby="menu1">
+            <% counties.forEach(function(county){ %>	
+                <li role="presentation"><a role="menuitem" tabindex="-1" 
+                    href="/hotspots/<%= county %>" ><%= county %></a></li> 
+            <% }); %>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="/others">Others</a></li>
+        </ul>
+    </div>
+</div>
+
+<% include partials/footer %>

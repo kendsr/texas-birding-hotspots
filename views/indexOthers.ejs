@@ -1,0 +1,16 @@
+<% include partials/header %>
+
+    <h2>Select a Hotspot to see on map</h2>
+    <div class="dropdown text-center">
+        <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Hot Spots
+        <span class="caret"></span></button>
+        <ul id="scrollme" class="dropdown-menu dropdown-menu-center" role="menu" aria-labelledby="menu1">
+            <% hotspots.forEach(function(hotspot){ %>	
+                <li role="presentation"><a role="menuitem" tabindex="-1" 
+                    href="/others/<%= hotspot %>" ><%= hotspot %></a></li> 
+            <% }); %>
+        </ul>
+    </div>
+</div>
+
+<% include partials/footer %>

@@ -1,0 +1,28 @@
+#scrollme {
+   max-height:150px;  
+   overflow-x:hidden; 
+   overflow-y:auto;  
+}
+.dropdown-menu-center {
+    left: 50% !important;
+    right: auto !important;
+    text-align: center !important;
+    transform: translate(-50%, 0) !important;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:white;
+    color:black;
+    text-align: center;
+}
+#map{
+    height:500px;
+    width:95%;
+    margin-left: 20px;
+}
+h2 {
+    margin-left: 20px;
+}
