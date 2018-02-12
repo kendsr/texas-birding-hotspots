@@ -54,11 +54,11 @@ app.get('/hotspots/:county', (req, res) => {
 app.get('/others', (req, res) =>{
     // return array of hotspots without location
     HotSpot.distinct("hotspot", {"location": { $eq: "" } }).then((hotspots) => {
-        if (!hotspots) {
-            return res.status(404).send();
+        if (hotspots.length === 0) {
+          var message = "All Sites have counties";
         }
         hotspots.sort();
-        res.render("indexOthers", {title:title, hotspots:hotspots});
+        res.render("indexOthers", {title:title, hotspots:hotspots, message:message});
         }).catch((e) => res.status(400).send());
 });
 
