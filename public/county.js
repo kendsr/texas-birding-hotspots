@@ -15,10 +15,9 @@ function initMap(){
     for (let i=0; i < hotspots.length; i++) {
       coords = {lat:hotspots[i].latitude, lng:hotspots[i].longitude};
       hotspot = hotspots[i].hotspot;
-      // See if notes attached to county name field
-      notes = hotspots[i].location.split("|");
-      if (notes.length > 1) {
-         content =  '<h3>'+ hotspot + '</h3><br><p>'+notes[1]+'</p>'
+      notes = hotspots[i].notes;
+      if (notes) {
+         content =  '<h3>'+ hotspot + '</h3><br><p>'+notes+'</p>'
       } else {
          content = '<h3>'+ hotspot + '</h3>'
       }

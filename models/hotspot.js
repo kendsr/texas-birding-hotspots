@@ -15,6 +15,9 @@ var HotSpot = mongoose.model('HotSpot', {
     },
     location: {
         type: String
+    },
+    notes: {
+        type: String
     }
 });
 

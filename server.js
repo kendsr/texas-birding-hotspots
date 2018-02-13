@@ -34,7 +34,7 @@ app.get('/hotspots', (req, res) =>{
             counties.splice(0,1);
         }
         res.render("index", {title:title, counties:counties});
-    }).catch((e) => res.status(400).send());
+    }).catch((e) => res.status(400).send(e));
 });
 
 app.get('/hotspots/:county', (req, res) => {
@@ -42,7 +42,7 @@ app.get('/hotspots/:county', (req, res) => {
     // return array of hotspots for a given county
     var county = req.params.county;
     
-    HotSpot.find({"location":county}).then((hotspots) => {
+    HotSpot.find({"location": county}).then((hotspots) => {
         if (!hotspots) {
             return res.status(404).send();
         }     
