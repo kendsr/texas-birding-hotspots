@@ -14,10 +14,17 @@ function initMap(){
     var markers = [];
     for (let i=0; i < hotspots.length; i++) {
       coords = {lat:hotspots[i].latitude, lng:hotspots[i].longitude};
-      content = hotspots[i].hotspot;
+      hotspot = hotspots[i].hotspot;
+      // See if notes attached to county name field
+      notes = hotspots[i].location.split("|");
+      if (notes.length > 1) {
+         content =  '<h3>'+ hotspot + '</h3><br><p>'+notes[1]+'</p>'
+      } else {
+         content = '<h3>'+ hotspot + '</h3>'
+      }
       markers.push({
         coords: coords,
-        content:'<h3>'+ content + '</h3>'
+        content: content
       });
     }
     
