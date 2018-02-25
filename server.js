@@ -52,6 +52,7 @@ app.get('/hotspots/:county', (req, res) => {
 });
 
 app.get('/others', (req, res) =>{
+    // Ok to have none
     // return array of hotspots without location
     HotSpot.distinct("hotspot", {"location": { $eq: "" } }).then((hotspots) => {
         if (hotspots.length === 0) {
