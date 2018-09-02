@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 
 const {mongoose} = require('./db/mongoose');
 const {HotSpot} = require('./models/hotspot');
+const {County} = require('./models/county');
 const port = process.env.PORT;
 const title = "Texas Birding Hotspots";
 
@@ -49,6 +50,50 @@ app.get('/hotspots/:county', (req, res) => {
         var data = JSON.stringify(hotspots);
         res.render("county", {title:title,countyName:county, data: data});
     }).catch((e) => res.status(400).send());
+});
+
+app.get('/hotspots/:county/recent', (req, res) => {
+    // Return top 60 observations in county
+    var regionCode = "";
+    var county = req.params.county;
+    // Trim "County" from county name to facilitate region code lookup
+    var check = county.slice(county.lastIndexOf(" ")+1, county.length);
+    if (check == "County"){
+        var lookup = county.slice(0, county.lastIndexOf(" "));
+    } else {
+        lookup = county;
+    }
+    // get County region code from counties collection
+    County.find({"name": lookup}).then ((countycode) => {
+        if (!countycode) {
+            regionCode = "None";
+        } else {
+            regionCode = countycode[0].code;
+        }
+       
+        var http = require("https");
+        var options = {
+            "method": "GET",
+            "hostname": "ebird.org",
+            "path": "/ws2.0/data/obs/" + regionCode + "/recent?maxResults=60",
+            "headers": {"X-eBirdApiToken": "r1cbnelmoh36"}
+        };
+
+        var req = http.request(options, function (resp) {
+            var chunks = [];
+
+            resp.on("data", function (chunk) {
+                chunks.push(chunk);
+            });
+
+            resp.on("end", function () {
+                var body = Buffer.concat(chunks);
+                var obj = JSON.parse(body);
+                res.render('observations', {title:title, county:county, topTen:obj});
+            });
+        });
+        req.end();
+    }); // End County.find,then 
 });
 
 app.get('/others', (req, res) =>{

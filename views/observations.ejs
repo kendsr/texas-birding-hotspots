@@ -1,0 +1,26 @@
+<% include partials/header %>
+
+    <h2>Top 60 Current <i>eBird</i> Observations for <%= county %></h2>
+
+    <% if (topTen.length > 0 ) { %>
+        <% topTen.forEach(function(obs){ %>	
+            <div class="obs container">
+                <p><%= obs.comName %></p> 
+                <p>How many: <%= obs.howMany %></p> 
+                <p>Date/Time: <%= obs.obsDt %></p>
+                <p>Location: <%= obs.locName %></p> 
+                <p>Private Poperty: <%= obs.locationPrivate %></p> 
+            </div>
+        <% }); %>
+    <% } else {%>
+        <div>
+            <p>No current observations found</p>
+        </div>
+    <% } %>
+
+    </div>
+        
+
+</div>
+
+<% include partials/footer %>

@@ -35,7 +35,12 @@
 
   <h2><%= countyName %></h2>
   <div id="map" data-hotspots="<%= data %>"></div>
- <script src="/county.js"></script>
+  <div class="container" style="font-size:24px">
+        Click
+        <a href="/hotspots/<%= countyName %>/recent">here</a>
+        too see top 60 observations for County
+  </div>
+ <script src="/countyMap.js"></script>
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBITY98VmBRgnVfbsmkSoRo-C2ZF3o3Rug&callback=initMap">
     </script>
