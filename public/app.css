@@ -30,3 +30,11 @@ h2 {
 #dev {
     margin-left: 20px;
 }
+
+.obs {
+    text-align: left;
+    background-color: lightskyblue;
+    width: 75%;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
